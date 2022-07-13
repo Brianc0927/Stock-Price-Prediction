@@ -16,6 +16,8 @@ def trainer(net, criterion, optimizer, trainloader, devloader, epoch_n=100, path
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels, data_index = data
+            inputs.requires_grad = True
+            labels.requires_grad = True
 
             # zero the parameter gradients
             optimizer.zero_grad()

@@ -34,15 +34,15 @@ For your references:
 if __name__:
 
 
-    ## Parser initializing
-    parser = argparse.ArgumentParser(description='Train prediction model')
-    parser.add_argument('--ngpu', default=1, type=int, required=False)
-    args   = parser.parse_args()
+    # ## Parser initializing
+    # parser = argparse.ArgumentParser(description='Train prediction model')
+    # parser.add_argument('--ngpu', default=1, type=int, required=False)
+    # args   = parser.parse_args()
 
 
     ## Device
-    device = torch.device("cuda:3" if args.ngpu > 0 else "cpu")
-    # device = torch.device("cpu")
+    # device = torch.device("cuda" if args.ngpu > 0 else "cpu")
+    device = torch.device("cpu")
 
 
     ## Data
@@ -62,8 +62,8 @@ if __name__:
     trainset = Dataset(trainX, trainY)
     testset  = Dataset(testX, testY)
     # Get dataloader
-    batch_size = 100
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=1) # num_workers should set 1 if put data on CUDA
+    batch_size = 10
+    trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=1)
     testloader  = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=1)
 
 
@@ -86,13 +86,16 @@ if __name__:
     else:
         net.load_state_dict(torch.load(checkpoint))
 
-
     ## Test the model
     test = tester(net, criterion, testloader)
     # Show the difference between predict and groundtruth (loss)
     print('Test Result: ', test)
 
-
     ## Predict
-    predict = net.predict(torch.tensor([[126, 124, 124, 122.5, 121]], dtype=torch.float32))
+    test_data = torch.tensor(
+            [[126, 124],[126, 124],[126, 124],[126, 124],[126, 124]],
+            dtype=torch.float32
+        )
+    print(test_data.shape)
+    predict = net.predict(test_data)
     print('Predict Result', predict)
