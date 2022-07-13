@@ -17,7 +17,7 @@ def pikleOpen(filename):
 
 
 def readData(f):
-    return np.genfromtxt(f, delimiter='\t', dtype=str)[1:]
+    return np.genfromtxt(f, delimiter='\t', dtype=str)[1:].tolist()
 
 
 def saveModel(net, path):

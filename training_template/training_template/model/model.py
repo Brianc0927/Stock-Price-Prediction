@@ -17,7 +17,9 @@ class LSTMPredictor(nn.Module):
             return self.forward(input).item()
 
     def forward(self, input):
-        # Feed input to BERT
+
+        input = input.view(input.shape[0], input.shape[2], -1)
         logits = self.output(self.relu(self.layer_a(input)))
+        logits = logits.view(input.shape[0], logits.shape[2], -1)
 
         return logits

@@ -6,21 +6,10 @@ def preprocess(data):
     """
     # (OPTIONAL)
     # Save all the columns to variables
-        date   = data[:, 0] # the first column of data
-        open   = data[:, 1]
-        high   = data[:, 2]
-        low    = data[:, 3]
-        close  = data[:, 4]
-        volume = data[:, 5]
     """
-    date   = data[:, 0]
-    open   = data[:, 1]
-    high   = data[:, 2]
-    low    = data[:, 3]
-    close  = data[:, 4]
-    volume = data[:, 5]
-    prices = np.array([[GSPC, AMC] for _, GSPC, AMC, RIVN, LCID, XPEV, LI, PTRA, F, GM, TWTR, TGT, SVNDY, EMR, GRMN, DHR, NUE, NSANY, TM, HMC in data]).astype(np.float64)
-    print(prices)
+    prices = np.array(
+            [ [GSPC, AMC] for Date, TSLA, GSPC, AMC, RIVN, LCID, XPEV, LI, PTRA, F, GM, TWTR, TGT, SVNDY, EMR, GRMN, DHR, NUE, NSANY, TM, HMC in data ]
+        ).astype(np.float64)
     return prices
 
 
