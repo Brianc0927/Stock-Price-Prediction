@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from utils.utils import pickleStore, readData
+# from utils.utils import pickleStore, readData
 from preprocessing.preprocessing import preprocess, transform_dataset, train_test_split
 from dataset.dataset import Dataset
 from model.model import LSTMPredictor
@@ -31,7 +31,15 @@ For your references:
 """
 
 
-if __name__:
+def readData(f):
+    return np.genfromtxt(f, delimiter='\t', dtype=str)[1:].tolist()
+
+
+def saveModel(net, path):
+    torch.save(net.state_dict(), path)
+
+
+if __name__ == '__main__':
 
 
     # ## Parser initializing
