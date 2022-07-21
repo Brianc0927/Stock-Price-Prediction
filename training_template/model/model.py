@@ -14,10 +14,12 @@ class LSTMPredictor(nn.Module):
 
     def predict(self, input):
         with torch.no_grad():
-            return self.forward(input).item()
+            return self.forward(input)
 
     def forward(self, input):
-        # Feed input to BERT
+
+        input = input.view(input.shape[0], input.shape[2], -1)
         logits = self.output(self.relu(self.layer_a(input)))
+        logits = logits.view(input.shape[0], logits.shape[2], -1)
 
         return logits
