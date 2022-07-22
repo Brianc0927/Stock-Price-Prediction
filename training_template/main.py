@@ -35,6 +35,8 @@ def readData(f):
     return np.genfromtxt(f, delimiter='\t', dtype=str)[1:].tolist()
 
 
+<<<<<<< HEAD:training_template/main.py
+=======
 def saveModel(net, path):
     torch.save(net.state_dict(), path)
 
@@ -42,6 +44,7 @@ def saveModel(net, path):
 if __name__ == '__main__':
 
 
+>>>>>>> 07a619c2680f54406b4dfc905d76527e2e1251c5:training_template/training_template/main.py
     # ## Parser initializing
     # parser = argparse.ArgumentParser(description='Train prediction model')
     # parser.add_argument('--ngpu', default=1, type=int, required=False)
@@ -101,7 +104,11 @@ if __name__ == '__main__':
 
     ## Predict
     test_data = torch.tensor(
+<<<<<<< HEAD:training_template/main.py
+            [[[126, 124],[126, 124],[126, 124],[126, 124],[126, 124]]],
+=======
             [[126, 124],[126, 124],[126, 124],[126, 124],[126, 124]],
+>>>>>>> 07a619c2680f54406b4dfc905d76527e2e1251c5:training_template/training_template/main.py
             dtype=torch.float32
         )
     print(test_data.shape)

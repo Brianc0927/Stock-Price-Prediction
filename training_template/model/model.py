@@ -14,7 +14,7 @@ class LSTMPredictor(nn.Module):
 
     def predict(self, input):
         with torch.no_grad():
-            return self.forward(input).item()
+            return self.forward(input)
 
     def forward(self, input):
 
